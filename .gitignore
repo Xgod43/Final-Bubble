@@ -1,0 +1,30 @@
+# Python/runtime output
+.venv/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Local logs and generated captures
+logs/
+launch_errors.log
+
+# Native build output
+native/build/
+
+# Machine-specific calibration state
+force_calibration.json
+loadcell_calibration.json
+camera_deform_calibration.json
+
+# Local editor/OS metadata
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Packaging/cache
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/

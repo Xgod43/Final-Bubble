@@ -1,0 +1,46 @@
+from __future__ import annotations
+
+import sys
+import traceback
+from pathlib import Path
+
+
+ROOT = Path(__file__).resolve().parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+
+def launch_modern_python_gui() -> None:
+    from soft_bubble_gripper_gui import main as modern_main
+
+    modern_main()
+
+
+def launch_legacy_gui() -> None:
+    from soft_bubble_gripper_core import main as legacy_main
+
+    legacy_main(use_legacy=True)
+
+
+def write_launch_diagnostic(stage: str, exc: Exception) -> None:
+    log_path = ROOT / "launch_errors.log"
+    try:
+        with log_path.open("a", encoding="utf-8") as handle:
+            handle.write(f"\n[{stage}]\n")
+            handle.write("".join(traceback.format_exception(type(exc), exc, exc.__traceback__)))
+    except Exception:
+        pass
+
+
+def main() -> None:
+    try:
+        launch_modern_python_gui()
+        return
+    except Exception as exc:
+        write_launch_diagnostic("modern_python_gui", exc)
+
+    launch_legacy_gui()
+
+
+if __name__ == "__main__":
+    main()
