@@ -115,12 +115,6 @@ Run this on the machine that should process camera frames:
 python3 soft_bubble_remote_vision_server.py --host 0.0.0.0 --port 8765
 ```
 
-Health check:
-
-```bash
-curl http://<host>:8765/health
-```
-
 Set the GUI remote URL with:
 
 ```bash
